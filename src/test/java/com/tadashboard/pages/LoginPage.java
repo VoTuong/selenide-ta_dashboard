@@ -1,4 +1,4 @@
-package org.tadashboard.pages;
+package com.tadashboard.pages;
 
 import com.codeborne.selenide.SelenideElement;
 

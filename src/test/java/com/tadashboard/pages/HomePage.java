@@ -1,4 +1,4 @@
-package org.tadashboard.pages;
+package com.tadashboard.pages;
 
 import com.codeborne.selenide.SelenideElement;
 
@@ -8,10 +8,14 @@ public class HomePage {
 
     // Define Selenide elements using locators
     private final SelenideElement mainMenu = $("#main-menu");
-//    private final SelenideElement helpOption = $x("//ul[@class='head-menu']//li[@class='hasbg h-help']");
+    private final SelenideElement helpOption = $x("//ul[@class='head-menu']//li[@class='hasbg h-help']");
 //    private final SelenideElement labManagerOption = $x("//ul[@class='head-menu']//li[@class='hasbg h-lab']");
 
     public boolean isMainMenuDisplayed() {
         return mainMenu.isDisplayed();
+    }
+
+    public boolean isHelpOptionDisplayed() {
+        return helpOption.isDisplayed();
     }
 }
