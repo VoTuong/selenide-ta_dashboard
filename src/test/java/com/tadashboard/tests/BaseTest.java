@@ -71,7 +71,8 @@ public abstract class BaseTest {
     }
 
     @Attachment(value = "Screenshot", type = "image/png")
-    private void attachScreenshot(byte[] screenshot) {
+    private byte[] attachScreenshot(byte[] screenshot) {
+        return screenshot;
     }
 
 //    private final static String selenideProperties = "selenide.properties";
