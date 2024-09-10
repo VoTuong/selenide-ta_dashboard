@@ -36,11 +36,10 @@
 By the following official instructions [here](https://reportportal.io/docs/Deploy-with-Docker), you can do that in shortly.
 
 <em>Navigate repository root.</em><br/>
-`$ cd selenide-testng-reportportal-example`<br/>
+`$ cd selenide-ta_dashboard`<br/>
 
 <em>Download the latest compose descriptor.</em><br/>
 `$ curl https://raw.githubusercontent.com/reportportal/reportportal/master/docker-compose.yml -o docker-compose.yml`<br/>
-Ensure you override the UAT Service environment variable `RP_INITIAL_ADMIN_PASSWORD` with password for superadmin username you want.
 
 <em>Login with Docker credential</em><br/>
 `$ docker login`<br/>
@@ -50,14 +49,16 @@ Ensure you override the UAT Service environment variable `RP_INITIAL_ADMIN_PASSW
 
 #### **Setup ReportPortal UI**
 <em>Get current IP on your machine (For ethernet in this case). </em><br/>
+>`$ ipconfig`<br/>
+> 172.25.208.1
 
 Open your browser with an IP address of the deployed environment at port 8080.
 
 Use below accounts to access.
 > `default/1q2w3e`<br/>
-> `superadmin/erebus`<br/>
+> `superadmin/erebus`
 
-Now, I use account `superadmin/erebus` to create a project named `selenide-reportportal-example`
+Now, I use account `superadmin/erebus` to create a project named `ta_selenide`
 1. Navigate to Projects Management in URL http://localhost:8080/ui/#administrate/projects
 2. Create a project
 3. Add a user to the project
