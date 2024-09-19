@@ -1,12 +1,13 @@
 package utilities;
 
+import com.tadashboard.constants.Constants;
 import org.testng.IRetryAnalyzer;
 import org.testng.ITestResult;
 
 public class RetryAnalyzer implements IRetryAnalyzer {
 
     private int retryCount = 0;
-    private static final int maxRetryCount = 2;  // Number of retries
+    private static final int maxRetryCount = Constants.MAX_RETRY;  // Number of retries
 
     @Override
     public boolean retry(ITestResult result) {
