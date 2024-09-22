@@ -1,17 +1,15 @@
 package com.tadashboard.tests;
 
-import com.epam.reportportal.testng.ReportPortalTestNGListener;
+
 import com.tadashboard.enums.Message;
 import com.tadashboard.enums.Repository;
 import com.tadashboard.pages.HomePage;
 import com.tadashboard.pages.LoginPage;
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import utilities.AlertHelper;
 
 
-@Listeners({ReportPortalTestNGListener.class})
 public class LoginTest extends BaseTest{
 
     String username = "administrator";  // Replace with a valid username

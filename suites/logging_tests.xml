@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Logging Tests" parallel="methods" thread-count="4" >
+<!--    <listeners>-->
+<!--        <listener class-name="com.tadashboard.listeners.ScreenshotListener"/>-->
+<!--    </listeners>-->
+    <test verbose="1" name="Lucky Pug">
+        <classes>
+            <class name="com.tadashboard.tests.AddAttachmentTest"/>
+        </classes>
+    </test>
+
+</suite>

@@ -4,41 +4,44 @@ package com.tadashboard.tests;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
-import com.codeborne.selenide.testng.TextReport;
+import com.codeborne.selenide.logevents.SelenideLogger;
 import com.epam.reportportal.listeners.LogLevel;
+import com.epam.reportportal.selenide.ReportPortalSelenideEventListener;
 import com.epam.reportportal.service.ReportPortal;
 import com.tadashboard.pages.HomePage;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.logging.LogType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 
 import java.io.File;
 import java.util.Date;
-import java.util.Objects;
+import java.util.logging.Level;
 
 import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.screenshot;
 import static java.lang.invoke.MethodHandles.lookup;
 
-/**
- * BaseTest class
- * <br/>
- *
- * @author ngoanh2n
- */
+public class BaseTest {
 
-public abstract class BaseTest {
+    static {
+        // enable Selenide logger and attach browser logs on step failure
+        SelenideLogger.addListener(
+                "ReportPortal logger",
+                new ReportPortalSelenideEventListener(LogLevel.INFO).enableSeleniumLogs(LogType.BROWSER, Level.FINER).logScreenshots(true).logPageSources(false)
+        );
+    }
 
     private static final Logger log = LoggerFactory.getLogger(lookup().lookupClass() );
     private static final HomePage homePage = new HomePage();
 
     @BeforeClass
     public void setUp() {
-        TextReport.onSucceededTest = false;
-        TextReport.onFailedTest = true;
         Configuration.headless = false;    // Ensure the browser is not in headless mode
         log.info("Start {} TestNG tests in {}", getClass().getName(), Configuration.browser);
         open("http://localhost/TADashboard/login.jsp");
@@ -53,23 +56,21 @@ public abstract class BaseTest {
     }
 
     @AfterMethod
-    public void cleanUp() {
+    public void tearDown() {
         homePage.logout();
-    }
-
-    @AfterClass
-    public void tearDown(ITestResult result) {
-        if (ITestResult.FAILURE == result.getStatus()) {
-            File screenshotFile = new File((Objects.requireNonNull(Selenide.screenshot("screenshot"))));
-            System.out.println(screenshotFile);
-            String screenshotPath = screenshotFile.getPath();
-                ReportPortal.emitLog("message", LogLevel.FATAL.name(), new Date(), new File(screenshotPath.replaceFirst("(?i)^file:[/\\\\]+", "")));
-
-        }
         log.info("Finished {} TestNG tests in {}", getClass().getName(), Configuration.browser);
         Selenide.closeWebDriver();
     }
 
-
+    @AfterMethod
+    public void addAttachmentOnFailure(ITestResult testResult){
+        if (!testResult.isSuccess()) {
+            if (WebDriverRunner.getWebDriver() instanceof TakesScreenshot) {
+                File screenshot = screenshot(OutputType.FILE);
+//                LoggingUtils.log(screenshot, "Test failed - Screenshot attached " + testResult.getMethod().getMethodName());
+                ReportPortal.emitLog("Test failed - Screenshot attached " + testResult.getMethod().getMethodName(), "ERROR", new Date(), screenshot);
+            }
+        }
+    }
 
 }
