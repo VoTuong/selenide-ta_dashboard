@@ -2,6 +2,7 @@ package utilities;
 
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
+import com.epam.reportportal.annotations.Step;
 import com.tadashboard.constants.Constants;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -35,6 +36,7 @@ public class AlertHelper {
     /**
      * To get the alert message.
      */
+    @Step(value = "To get the alert message" )
     public static String getTextAlert() {
         waitForAlertVisible();
         String alertText = Selenide.switchTo().alert().getText();
@@ -45,6 +47,7 @@ public class AlertHelper {
     /**
      * To wait for the alert appear.
      */
+    @Step(value = "Wait for alert appear")
     public static void waitForAlertVisible() {
         WebDriverWait wait = new WebDriverWait(WebDriverRunner.getWebDriver(), Duration.ofSeconds(Constants.SHORT_TIME));
         wait.until(ExpectedConditions.alertIsPresent());

@@ -1,0 +1,14 @@
+{
+  "USER_VALID_CREDENTIAL": {
+    "username": "administrator",
+    "password": ""
+  },
+  "USER_VALID_CREDENTIAL_2": {
+    "username": "susan",
+    "password": ""
+  },
+  "USER_INVALID_CREDENTIALS": {
+    "username": "abc",
+    "password": "abc"
+  }
+}
