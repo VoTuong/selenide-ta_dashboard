@@ -1,4 +1,3 @@
-my README file:
 # selenide-ta_dashboard
 
 ## **Environment**
@@ -99,12 +98,10 @@ Now, I use account `superadmin/erebus` to create a project named `ta_selenide`
 ### **ReportPortal Results**
 See test results as launches in URL http://localhost:8080/ui/?#default_personal/launches/all
 
-### **NGRok**
+### **ngrok**
 1. Run ngrok.exe
 2. Run command
 > ngrok config add-authtoken <auth-token></br>
 > ngrok http http://localhost:8080</br>
 
 See URL as launches in Forwarding line
-
-please help me write more instructions to initialize selenium grid and config to run with maven and testng.xml file
