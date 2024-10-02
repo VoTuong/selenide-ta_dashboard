@@ -9,9 +9,9 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PageModel {
+public class Page {
     private String pageName;
-    private PageModel parentPageValue;
+    private Page parentPageValue;
     private String numberOfColumnsValue;
     private String displayAfterValue;
     private boolean isPublic;

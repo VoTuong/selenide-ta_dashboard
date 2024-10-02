@@ -17,21 +17,13 @@ public class AlertHelper {
 
     private static final Logger log = LoggerFactory.getLogger(lookup().lookupClass() );
 
-//    /**
-//     * To click on the 'Cancel' button of the alert.
-//     */
-//    public static void dismissAlert() {
-//        if (isAlertPresent())
-//            Selenide.dismiss();
-//    }
-
-//    /**
-//     * To click on the 'OK' button of the alert.
-//     */
-//    public static void confirmAlert() {
-//        waitForAlertVisible();
-//        Selenide.confirm();
-//    }
+    /**
+     * To click on the 'OK' button of the alert.
+     */
+    public static void confirmAlert() {
+        waitForAlertVisible();
+        Selenide.confirm();
+    }
 
     /**
      * To get the alert message.
@@ -52,15 +44,5 @@ public class AlertHelper {
         WebDriverWait wait = new WebDriverWait(WebDriverRunner.getWebDriver(), Duration.ofSeconds(Constants.SHORT_TIME));
         wait.until(ExpectedConditions.alertIsPresent());
     }
-
-//    public static boolean isAlertPresent() {
-//        try {
-//            waitForAlertVisible();
-//            Selenide.switchTo().alert();
-//            return true;
-//        } catch (Exception e) {
-//            return false;
-//        }
-//    }
 
 }
