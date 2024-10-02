@@ -15,8 +15,7 @@ public class TestCaseTC067 extends BaseTest{
     DataProfilesPage dataProfilesPage = new DataProfilesPage();
 
 
-    @Test(retryAnalyzer = utilities.RetryAnalyzer.class,
-            testName = "DA_DP_TC067: Verify that all Pre-set Data Profiles are populated correctly",
+    @Test(testName = "DA_DP_TC067: Verify that all Pre-set Data Profiles are populated correctly",
             dataProvider = "validUser", dataProviderClass = UserDataProviderFactory.class, groups = {"dadpGroup"})
     public void DA_DP_TC067(User validUser) {
 

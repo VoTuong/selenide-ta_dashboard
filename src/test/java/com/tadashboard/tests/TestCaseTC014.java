@@ -16,19 +16,21 @@ import org.testng.annotations.Test;
 import utilities.FileUtils;
 import utilities.JsonUtils;
 
-import static com.tadashboard.constants.Constants.DATA_PATH_ROOT;
+import static com.tadashboard.constants.Constants.PAGE_JSON_DATA_PATH;
 
 public class TestCaseTC014 extends BaseTest{
     HomePage homePage = new HomePage();
     LoginPage loginPage = new LoginPage();
     PagePrompt pagePrompt = new PagePrompt();
     private Page createdPage;
+    private User adminUser;
 
-    private static final String pageJSONPath = FileUtils.getCurrentDir() + DATA_PATH_ROOT + "pages.json";
-    private static final JsonObject pageDataObject = JsonUtils.getJsonObjects(pageJSONPath);
 
     @DataProvider(name = "DA_MP_TC014")
     public static Object[][] dataForTC014() {
+        String pageJSONPath = FileUtils.getCurrentDir() + PAGE_JSON_DATA_PATH;
+        JsonObject pageDataObject = JsonUtils.getJsonObjects(pageJSONPath);
+
         User validUser = (User) UserDataProviderFactory.validUser()[0][0];
         User validUser2 = (User) UserDataProviderFactory.validUser2()[0][0];
         JsonObject pageData = pageDataObject.getAsJsonObject("PUBLIC_PAGE");
@@ -42,6 +44,7 @@ public class TestCaseTC014 extends BaseTest{
     @Test(testName = "DA_MP_TC014: Verify that 'Public' pages can be visible and accessed by all users of working repository", dataProvider = "DA_MP_TC014")
     public void DA_MP_TC014(User validUser, User validUser2, Page pagePublic) {
         this.createdPage = pagePublic;
+        this.adminUser = validUser;
 
         loginPage.login(Repository.SAMPLE_REPOSITORY.getValue(), validUser);
 
@@ -56,6 +59,8 @@ public class TestCaseTC014 extends BaseTest{
 
     @AfterMethod
     public void clearCreatedPage(ITestResult result){
+        homePage.logout();
+        loginPage.login(Repository.SAMPLE_REPOSITORY.getValue(), adminUser);
         if (createdPage != null) {
             homePage.deletePage(createdPage);
         }

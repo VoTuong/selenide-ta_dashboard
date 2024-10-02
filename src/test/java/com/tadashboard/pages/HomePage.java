@@ -12,7 +12,6 @@ import static com.codeborne.selenide.Selenide.$x;
 
 public class HomePage extends BasePage{
 
-    // Define Selenide elements using locators
     private final SelenideElement usernameLbl = $x("//div[@id='header']//a[@href='#Welcome']//parent::li");
     private final SelenideElement mainMenu = $("#main-menu");
     private final SelenideElement globalSettingBtn = $(".mn-setting");
@@ -20,7 +19,6 @@ public class HomePage extends BasePage{
     private final SelenideElement administerLink = $x("//a[@href='#Administer']");
     private final SelenideElement dataProfilesBtn = $x("//li/a[text()='Data Profiles']");
 
-    private final String globalSettingOptionXpath = "//div[@id='main-menu']//li[@class='mn-setting']//a[contains(text(),'%s')]";
     private final String pageNameInMenuXpath = "//div[@id='main-menu']//ul/li/a[normalize-space()='%s']";
 
     @Step
@@ -57,12 +55,7 @@ public class HomePage extends BasePage{
     public void selectPage(Object pageName){
         String pageNameText = getPageName(pageName);
         logInfo("Select page: " + pageNameText);
-
-//        if (isPageExisted(pageNameText)) {
-//        $x(String.format(pageNameInMenuXpath, "Overview")).shouldBe(visible).click();
-
         $x(String.format(pageNameInMenuXpath, pageNameText)).shouldBe(visible).click();
-//        }
     }
 
     @Step
@@ -73,12 +66,12 @@ public class HomePage extends BasePage{
         selectPage(pageName);
         clickGlobalSettingOption(GlobalSettingOptions.DELETE);
         AlertHelper.confirmAlert();
-
     }
 
     public void clickGlobalSettingOption(GlobalSettingOptions option) {
         logInfo("Click Setting Option " + option.getValue());
         openGlobalSettingMenu();
+        String globalSettingOptionXpath = "//div[@id='main-menu']//li[@class='mn-setting']//a[contains(text(),'%s')]";
         $x(String.format(globalSettingOptionXpath,option.getValue())).click();
     }
 

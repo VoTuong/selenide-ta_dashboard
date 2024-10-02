@@ -12,7 +12,7 @@ public class UserDataProviderFactory {
     @DataProvider(name = "validUser")
     public static Object[][] validUser() {
 
-        String filePath = FileUtils.getCurrentDir() + Constants.USER_JSON_DATA_PATH_ROOT;
+        String filePath = FileUtils.getCurrentDir() + Constants.USER_JSON_DATA_PATH;
         JsonObject dataObject = JsonUtils.getJsonObjects(filePath);
 
         JsonObject accountData = dataObject.getAsJsonObject("USER_VALID_CREDENTIAL");
@@ -26,7 +26,7 @@ public class UserDataProviderFactory {
     @DataProvider(name = "validUser2")
     public static Object[][] validUser2() {
 
-        String filePath = FileUtils.getCurrentDir() + Constants.USER_JSON_DATA_PATH_ROOT;
+        String filePath = FileUtils.getCurrentDir() + Constants.USER_JSON_DATA_PATH;
         JsonObject dataObject = JsonUtils.getJsonObjects(filePath);
 
         JsonObject accountData = dataObject.getAsJsonObject("USER_VALID_CREDENTIAL_2");
@@ -40,7 +40,7 @@ public class UserDataProviderFactory {
     @DataProvider(name = "invalidUser")
     public static Object[][] invalidUser() {
 
-        String filePath = FileUtils.getCurrentDir() + Constants.USER_JSON_DATA_PATH_ROOT;
+        String filePath = FileUtils.getCurrentDir() + Constants.USER_JSON_DATA_PATH;
         JsonObject dataObject = JsonUtils.getJsonObjects(filePath);
 
         JsonObject accountData = dataObject.getAsJsonObject("USER_INVALID_CREDENTIALS");
