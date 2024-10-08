@@ -1,11 +1,10 @@
 package utilities;
 
-
+import java.io.File;
 import java.io.FileInputStream;
 import java.util.Properties;
 
 public class PropertiesUtils {
-
     private static Properties properties;
     private static FileInputStream file;
 
@@ -16,7 +15,7 @@ public class PropertiesUtils {
         try {
             if (file == null) {
                 properties = new Properties();
-                String linkFile = FileUtils.getCurrentDir() + propertiesFilePath;
+                String linkFile = System.getProperty("user.dir") + File.separator + propertiesFilePath;
                 file = new FileInputStream(linkFile);
                 properties.load(file);
                 file.close();
@@ -28,5 +27,4 @@ public class PropertiesUtils {
         }
         return keyval;
     }
-
 }

@@ -3,17 +3,14 @@
 <suite name="Suite Tests"> <!--parallel="classes" thread-count="2"-->
     <listeners>
         <listener class-name="com.epam.reportportal.testng.ReportPortalTestNGListener"/>
-        <listener class-name="com.tadashboard.listeners.AnnotationTransformer"/>
+<!--        <listener class-name="listeners.AnnotationTransformer"/>-->
     </listeners>
     <test name="Edge Test">
         <parameter name="browser" value="edge"/>
         <parameter name="runMode" value=""/>
         <classes>
-            <class name="com.tadashboard.tests.TestCaseTC001"/>
-            <class name="com.tadashboard.tests.TestCaseTC002"/>
-            <class name="com.tadashboard.tests.TestCaseTC014"/>
-            <class name="com.tadashboard.tests.TestCaseTC065"/>
-            <class name="com.tadashboard.tests.TestCaseTC067"/>
+<!--            <class name="com.auto.tiki.tests.Final001Tests"/>-->
+            <class name="com.auto.tiki.tests.Final002Tests"/>
         </classes>
     </test>
 </suite>
