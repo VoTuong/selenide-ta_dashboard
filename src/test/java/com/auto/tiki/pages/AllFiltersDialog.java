@@ -22,7 +22,7 @@ public class AllFiltersDialog {
         if (filter.getSuppliers() != null) selectSupplier(filter);
     }
 
-    @Step("Select the supplier: \"{filter.getSuppliers}\"")
+    @Step("Select the supplier: ")
     public void selectSupplier(Filter filter) {
         scrollToCategory(FilterContainers.SUPPLIER.getValue());
         clickViewMoreButton(FilterContainers.SUPPLIER.getValue());
