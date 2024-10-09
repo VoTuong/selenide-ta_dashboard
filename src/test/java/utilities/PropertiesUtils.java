@@ -5,10 +5,9 @@ import java.io.FileInputStream;
 import java.util.Properties;
 
 public class PropertiesUtils {
+    private static final String propertiesFilePath = "src/test/resources/properties/configs.properties";
     private static Properties properties;
     private static FileInputStream file;
-
-    private static final String propertiesFilePath = "src/test/resources/properties/configs.properties";
 
     public static String getValue(String key) {
         String keyval = null;

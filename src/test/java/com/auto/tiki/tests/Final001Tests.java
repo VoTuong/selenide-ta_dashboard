@@ -43,7 +43,7 @@ public class Final001Tests extends BaseTest {
         List<Product> products = productListPage.getListOfProducts();
 
         softAssert.assertTrue(productListPage.isFilterOptionUnderCategoryHighlight(FilterContainers.SUPPLIER.getValue(), Suppliers.SUPPLIERS_FAHASA.getValue()),
-                "Error: " + FilterContainers.SUPPLIER.getValue() +": " + Suppliers.SUPPLIERS_FAHASA.getValue() + " is not highlight");
+                "Error: " + FilterContainers.SUPPLIER.getValue() + ": " + Suppliers.SUPPLIERS_FAHASA.getValue() + " is not highlight");
 
 
         softAssertions.assertThat(products).allMatch(product -> product.getPrice() >= filter.getMinimumPrice() && product.getPrice() <= filter.getMaximumPrice(),

@@ -19,7 +19,7 @@ public class ProductCategoryPage extends HomePage {
     }
 
     @Step("Select category item name randomly")
-    public void selectRandomItemContainer(){
+    public void selectRandomItemContainer() {
         String categoryItemContainer = "//div[@class='styles__TreeName-sc-1uq9a9i-3 hFhoJP']";
         System.out.println($$x(categoryItemContainer).size());
         Random random = new Random();

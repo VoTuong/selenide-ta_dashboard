@@ -21,7 +21,7 @@ public class HomePage {
     }
 
     @Step("Back to previous page")
-    public void backToPreviousPage(){
+    public void backToPreviousPage() {
         Selenide.back();
     }
 
@@ -38,7 +38,7 @@ public class HomePage {
     }
 
     @Step("Should the recently visited products: \"{productName}\" display in Recently Container")
-    public void shouldProductDisplayListRecently(String productName){
+    public void shouldProductDisplayListRecently(String productName) {
         String productRecentlyList = "//div[@data-view-id='product_list_recently_view_container']//h3[text() = '%s']";
         $x(String.format(productRecentlyList, productName)).shouldBe(visible);
     }

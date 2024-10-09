@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public enum LeftMenu{
+public enum LeftMenu {
     BOOKSTORE_TIKI("Nhà Sách Tiki"),
     SPORTS_OUTDOORS("Thể Thao - Dã Ngoại");
 

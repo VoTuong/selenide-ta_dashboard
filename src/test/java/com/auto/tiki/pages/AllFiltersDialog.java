@@ -19,7 +19,7 @@ public class AllFiltersDialog {
     @Step("Fill in All filters dialog")
     public void fillInAllFiltersDialog(Filter filter) {
         enterPriceRange(filter);
-        if (filter.getSuppliers()!=null) selectSupplier(filter);
+        if (filter.getSuppliers() != null) selectSupplier(filter);
     }
 
     @Step("Select the supplier: \"{filter.getSuppliers}\"")
@@ -65,7 +65,7 @@ public class AllFiltersDialog {
     }
 
     @Step("Should All Filter dialog be displayed")
-    public void shouldAllFiltersDialogDisplayed(){
+    public void shouldAllFiltersDialogDisplayed() {
         allFilterDialog.shouldBe(visible);
     }
 

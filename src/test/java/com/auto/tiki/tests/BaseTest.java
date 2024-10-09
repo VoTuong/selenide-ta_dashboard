@@ -71,7 +71,7 @@ public class BaseTest {
     }
 
     @AfterMethod
-    public void addAttachmentOnFailure(ITestResult testResult){
+    public void addAttachmentOnFailure(ITestResult testResult) {
         if (!testResult.isSuccess()) {
             if (WebDriverRunner.getWebDriver() instanceof TakesScreenshot) {
                 File screenshot = screenshot(OutputType.FILE);

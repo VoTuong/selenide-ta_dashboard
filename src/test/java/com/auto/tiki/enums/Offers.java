@@ -6,9 +6,9 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum Offers {
-   TOP_DEAL("Siêu rẻ"),
-   FREE_SHIP("Free ship");
+    TOP_DEAL("Siêu rẻ"),
+    FREE_SHIP("Free ship");
 
-   private final String value;
+    private final String value;
 
 }
