@@ -6,7 +6,8 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum LeftMenu{
-    DIEN_GIA_DUNG("Điện Gia Dụng");
+    BOOKSTORE_TIKI("Nhà Sách Tiki"),
+    SPORTS_OUTDOORS("Thể Thao - Dã Ngoại");
 
     private final String value;
 

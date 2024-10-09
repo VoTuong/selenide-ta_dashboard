@@ -11,21 +11,12 @@ public class DataForTestFactory {
 
     @DataProvider(name = "TestCase001")
     public Object[][] dataTestCase001() {
-        String keyword = "Điện thoại";
-        String breadcrumb = "Trang chủ >" + " Kết quả tìm kiếm \"Điện thoại\"";
-        String pageTitle = "Điện thoại hàng chính hãng, giao nhanh";
-        return new Object[][]{{keyword, breadcrumb, pageTitle}};
-    }
-
-    @DataProvider(name = "TestCase002")
-    public Object[][] dataTestCase002() {
-        String pageTitle = "Lò vi sóng";
-        String breadcrumb = "Trang chủ > Điện Gia Dụng > Đồ dùng nhà bếp > Lò vi sóng";
+        String breadcrumb = "Trang chủ > Nhà Sách Tiki";
         Filter filter = Filter.builder()
-                .minimumPrice(1000000)
-                .maximumPrice(1700000)
-                .suppliers(new HashSet<>(List.of(Suppliers.TIKI_TRADING)))
+                .suppliers(new HashSet<>(List.of(Suppliers.SUPPLIERS_FAHASA)))
+                .minimumPrice(60000)
+                .maximumPrice(140000)
                 .build();
-        return new Object[][]{{pageTitle, breadcrumb, filter}};
+        return new Object[][]{{breadcrumb, filter}};
     }
 }

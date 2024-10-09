@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum Suppliers {
-    DIEN_MAY_ACE("Điện máy ACE"),
+    SUPPLIERS_FAHASA("Nhà sách Fahasa"),
     TIKI_TRADING("Tiki Trading");
 
     private final String value;

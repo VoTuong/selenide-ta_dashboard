@@ -62,8 +62,6 @@ public class BaseTest {
     public void launch() {
         open("https://tiki.vn/");
         WebDriverRunner.getWebDriver().manage().window().maximize();
-        com.auto.tiki.pages.HomePage.closePopupAdvertisement();
-
     }
 
     @AfterMethod

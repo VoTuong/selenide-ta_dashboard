@@ -1,7 +1,6 @@
 package com.auto.tiki.pages;
 
 import com.auto.tiki.enums.FilterContainers;
-import com.auto.tiki.enums.Offers;
 import com.auto.tiki.enums.Suppliers;
 import com.auto.tiki.model.Filter;
 import com.codeborne.selenide.SelenideElement;
@@ -19,20 +18,11 @@ public class AllFiltersDialog {
 
     @Step("Fill in All filters dialog")
     public void fillInAllFiltersDialog(Filter filter) {
-        if (filter.getOffers() != null) selectOffer(filter);
         enterPriceRange(filter);
-
         if (filter.getSuppliers()!=null) selectSupplier(filter);
     }
 
-    public void selectOffer(Filter filter) {
-        if (filter.getOffers() == Offers.TOP_DEAL) {
-            $x("(//div[h4[contains(text(), 'Ưu đãi')]]//span[not(text()='Siêu rẻ')])[1]").click();
-        } else if (filter.getOffers() == Offers.FREE_SHIP){
-            $x("(//div[h4[contains(text(), 'Ưu đãi')]]//span[not(text()='Siêu rẻ')])[2]").click();
-        }
-    }
-
+    @Step("Select the supplier: \"{filter.getSuppliers}\"")
     public void selectSupplier(Filter filter) {
         scrollToCategory(FilterContainers.SUPPLIER.getValue());
         clickViewMoreButton(FilterContainers.SUPPLIER.getValue());
@@ -62,15 +52,19 @@ public class AllFiltersDialog {
         $x(String.format(viewMoreButton, category)).should(visible).click();
     }
 
+    @Step("Scroll to category: \"{category}\" on All Filters dialog")
     private void scrollToCategory(String category) {
         String groupFilterLabel = "//div[@data-view-label='%s']";
         $x(String.format(groupFilterLabel, category)).should(visible).scrollTo();
     }
+
+    @Step("Select on category: \"{category}\" with option: \"{option}\"")
     private void clickCheckboxItem(String category, String option) {
         String itemFilterCheckbox = "//div[h4[text()='%s']]//span[text()='%s']/../preceding-sibling::div//span";
         $x(String.format(itemFilterCheckbox, category, option)).should(visible).scrollTo().click();
     }
 
+    @Step("Should All Filter dialog be displayed")
     public void shouldAllFiltersDialogDisplayed(){
         allFilterDialog.shouldBe(visible);
     }

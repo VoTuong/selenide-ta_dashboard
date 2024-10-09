@@ -11,7 +11,5 @@ import lombok.ToString;
 @ToString
 public class Product {
     private String name;
-    private boolean topDeal;
-
     private Integer price;
 }
