@@ -18,20 +18,12 @@ public class HomePage extends BasePage{
     private final SelenideElement logoutBtn = $x("//a[text()='Logout']");
     private final SelenideElement administerLink = $x("//a[@href='#Administer']");
     private final SelenideElement dataProfilesBtn = $x("//li/a[text()='Data Profiles']");
-    private static final SelenideElement okBtn = $("#OK");
 
     private final String pageNameInMenuXpath = "//div[@id='main-menu']//ul/li/a[normalize-space()='%s']";
 
-
     @Step
-    public void clickPanelOKButton() {
-        okBtn.shouldBe(visible).click();
-    }
-
-    @Step
-    public void shouldMainMenuDisplay() {
-        logInfo("Verify that the main menu is displayed");
-        mainMenu.shouldBe(visible);
+    public boolean isMainMenuDisplayed() {
+        return mainMenu.isDisplayed();
     }
 
     @Step
@@ -43,7 +35,6 @@ public class HomePage extends BasePage{
         }
     }
 
-    @Step
     public String getPageName(Object pageName) {
         if (pageName instanceof String) {
             return (String) pageName;
@@ -53,11 +44,11 @@ public class HomePage extends BasePage{
         return null;
     }
 
-    @Step
-    public void shouldPageBeExisted(Object pageName) {
+    public boolean isPageExisted(Object pageName) {
+
         String pageNameText = getPageName(pageName);
-        logInfo("Verify " + pageNameText + " page is displayed with another valid user");
-        $x(String.format(pageNameInMenuXpath, pageNameText)).shouldBe(visible);
+
+        return $x(String.format(pageNameInMenuXpath, pageNameText)).isDisplayed();
     }
 
     @Step
@@ -77,7 +68,6 @@ public class HomePage extends BasePage{
         AlertHelper.confirmAlert();
     }
 
-    @Step
     public void clickGlobalSettingOption(GlobalSettingOptions option) {
         logInfo("Click Setting Option " + option.getValue());
         openGlobalSettingMenu();
@@ -85,7 +75,6 @@ public class HomePage extends BasePage{
         $x(String.format(globalSettingOptionXpath,option.getValue())).click();
     }
 
-    @Step
     private void openGlobalSettingMenu() {
         logInfo("Select Global Setting");
         globalSettingBtn.shouldBe(visible).hover();
