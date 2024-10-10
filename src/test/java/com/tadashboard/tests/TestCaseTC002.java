@@ -14,7 +14,8 @@ import utilities.AlertHelper;
 public class TestCaseTC002 extends BaseTest{
     LoginPage loginPage = new LoginPage();
 
-    @Test(retryAnalyzer = utilities.RetryAnalyzer.class, dataProvider = "invalidUser", dataProviderClass = TestDataProviders.class)
+    @Test(retryAnalyzer = utilities.RetryAnalyzer.class,
+            dataProvider = "invalidUser", dataProviderClass = TestDataProviders.class)
     public void DA_LOGIN_TC002(User invalidUser) {
         loginPage.login(Repository.SAMPLE_REPOSITORY.getValue(), invalidUser);
 
