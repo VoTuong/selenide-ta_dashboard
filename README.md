@@ -74,4 +74,3 @@ This command will start a local server and open the Allure report in your defaul
 
 ## **ReportPortal Results**
 See test results as launches in URL http://localhost:8080/ui/?#default_personal/launches/all
-
