@@ -34,7 +34,10 @@ public class BaseTest {
     static {
         SelenideLogger.addListener(
                 "ReportPortal logger",
-                new ReportPortalSelenideEventListener().enableSeleniumLogs(LogType.BROWSER, Level.FINER).logScreenshots(true).logPageSources(false)
+                new ReportPortalSelenideEventListener()
+                        .enableSeleniumLogs(LogType.BROWSER, Level.FINER)
+                        .logScreenshots(true)
+                        .logPageSources(false)
         );
     }
 
