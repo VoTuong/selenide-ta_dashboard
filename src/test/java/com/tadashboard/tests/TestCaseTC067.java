@@ -1,6 +1,6 @@
 package com.tadashboard.tests;
 
-import com.tadashboard.dataprovider.UserDataProviderFactory;
+import com.tadashboard.dataprovider.TestDataProviders;
 import com.tadashboard.enums.Repository;
 import com.tadashboard.model.user.User;
 import com.tadashboard.pages.DataProfilesPage;
@@ -16,13 +16,13 @@ public class TestCaseTC067 extends BaseTest{
 
 
     @Test(testName = "DA_DP_TC067: Verify that all Pre-set Data Profiles are populated correctly",
-            dataProvider = "validUser", dataProviderClass = UserDataProviderFactory.class, groups = {"dadpGroup"})
+            dataProvider = "validUser", dataProviderClass = TestDataProviders.class)
     public void DA_DP_TC067(User validUser) {
 
         loginPage.login(Repository.SAMPLE_REPOSITORY.getValue(), validUser);
 
         homePage.openDataProfile();
-        Assert.assertTrue(dataProfilesPage.areDataProfilesListedAlphabetically(), "The pre-set data profiles are not listed and sorted correctly");
-
+        Assert.assertTrue(dataProfilesPage.areDataProfilesListedAlphabetically(),
+                "The pre-set data profiles are not listed and sorted correctly");
     }
 }
