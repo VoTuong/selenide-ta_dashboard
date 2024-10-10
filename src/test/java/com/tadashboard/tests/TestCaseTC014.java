@@ -7,7 +7,6 @@ import com.tadashboard.model.user.User;
 import com.tadashboard.pages.HomePage;
 import com.tadashboard.pages.LoginPage;
 import com.tadashboard.pages.PagePrompt;
-import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
@@ -34,8 +33,7 @@ public class TestCaseTC014 extends BaseTest{
 
         loginPage.login(Repository.SAMPLE_REPOSITORY.getValue(), validUser2);
 
-        Assert.assertTrue(homePage.isPageExisted(pagePublic.getPageName()),
-                "Verify " + pagePublic.getPageName() + " page is displayed with another valid user");
+        homePage.shouldPageBeExisted(pagePublic.getPageName());
     }
 
     @AfterMethod
