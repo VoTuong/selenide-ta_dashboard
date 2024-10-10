@@ -13,7 +13,6 @@ public class DataProfilesPage extends BasePage{
 
     private final ElementsCollection listDataProfilesName = $$x("//form[@id='form1']//table//tbody//td[2][not(.//a)]");
 
-    @Step
     public static boolean isListSortedAlphabetically(List<String> list) {
         List<String> sortedList = new ArrayList<>(list);
         Collections.sort(sortedList);
