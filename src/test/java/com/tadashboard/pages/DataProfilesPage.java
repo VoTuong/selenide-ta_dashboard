@@ -2,29 +2,22 @@ package com.tadashboard.pages;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.epam.reportportal.annotations.Step;
+import utilities.ListUtils;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.$$x;
 
 public class DataProfilesPage extends BasePage{
 
-    private final ElementsCollection listDataProfilesName = $$x("//form[@id='form1']//table//tbody//td[2][not(.//a)]");
+    private final ElementsCollection listDataProfilesName = $$x("//form[@id='form1']//table//td[2][not(.//a)]");
 
-    @Step
-    public static boolean isListSortedAlphabetically(List<String> list) {
-        List<String> sortedList = new ArrayList<>(list);
-        Collections.sort(sortedList);
-
-        return list.equals(sortedList);
-    }
 
     @Step("Check Data Profiles are sorted alphabet")
     public boolean areDataProfilesListedAlphabetically() {
         List<String> listPreset = getListDataProfile();
-        return isListSortedAlphabetically(listPreset);
+        return ListUtils.isListSorted(listPreset);
     }
 
     @Step("Get the list of data profiles")
