@@ -20,7 +20,7 @@ public class HomePage extends BasePage{
     private final SelenideElement dataProfilesBtn = $x("//li/a[text()='Data Profiles']");
     private static final SelenideElement okBtn = $("#OK");
 
-    private final String pageNameInMenuXpath = "//div[@id='main-menu']//ul/li/a[normalize-space()='%s']";
+    private final String pageNameInMenuXpath = "//div[@id='main-menu']//a[normalize-space()='%s']";
 
 
     @Step
