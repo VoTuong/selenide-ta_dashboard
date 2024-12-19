@@ -28,60 +28,61 @@ import static com.codeborne.selenide.Selenide.screenshot;
 import static java.lang.invoke.MethodHandles.lookup;
 
 public class BaseTest {
-    private static final Logger log = LoggerFactory.getLogger(lookup().lookupClass());
-    private static final HomePage homePage = new HomePage();
+	private static final Logger log = LoggerFactory.getLogger(lookup().lookupClass());
+	private static final HomePage homePage = new HomePage();
 
-    static {
-        SelenideLogger.addListener(
-                "ReportPortal logger",
-                new ReportPortalSelenideEventListener()
-                        .enableSeleniumLogs(LogType.BROWSER, Level.FINER)
-                        .logScreenshots(true)
-                        .logPageSources(false)
-        );
-    }
+	static {
+		SelenideLogger.addListener(
+				"ReportPortal logger",
+				new ReportPortalSelenideEventListener()
+						.enableSeleniumLogs(LogType.BROWSER, Level.FINER)
+						.logScreenshots(true)
+						.logPageSources(false)
+		);
+	}
 
-    @Parameters({"browser", "runMode"})
-    @BeforeClass
-    public void setUp(String browser, String runMode) {
-        if ("grid".equalsIgnoreCase(runMode)) {
-            Configuration.remote = "http://localhost:4444/";
-        }
-        switch (browser.toLowerCase()) {
-            case "chrome":
-                Configuration.browser = "chrome";
-                break;
-            case "edge":
-                Configuration.browser = "edge";
-                break;
-            default:
-                throw new IllegalArgumentException("Browser not supported: " + browser);
-        }
-        Configuration.headless = false;
-        log.info("Start {} TestNG tests in {}", getClass().getName(), Configuration.browser);
-    }
+	@Parameters({"browser", "runMode"})
+	@BeforeClass
+	public void setUp(String browser, String runMode) {
+		if ("grid".equalsIgnoreCase(runMode)) {
+			Configuration.remote = "http://localhost:4444/";
+		}
+		switch (browser.toLowerCase()) {
+			case "chrome":
+				Configuration.browser = "chrome";
+				break;
+			case "edge":
+				Configuration.browser = "edge";
+				break;
+			default:
+				throw new IllegalArgumentException("Browser not supported: " + browser);
+		}
+		Configuration.headless = false;
+		log.info("Start {} TestNG tests in {}", getClass().getName(), Configuration.browser);
+	}
 
-    @BeforeMethod
-    public void launch() {
-        open("http://localhost/TADashboard/login.jsp");
-        WebDriverRunner.getWebDriver().manage().window().maximize();
-    }
+	@BeforeMethod
+	public void launch() {
+		open("http://localhost/TADashboard/login.jsp");
+		WebDriverRunner.getWebDriver().manage().window().maximize();
+	}
 
-    @AfterMethod
-    public void tearDown() {
-        homePage.logout();
-        log.info("Finished {} TestNG tests in {}", getClass().getName(), Configuration.browser);
-        Selenide.closeWebDriver();
-    }
+	@AfterMethod
+	public void tearDown() {
+		homePage.logout();
+		log.info("Finished {} TestNG tests in {}", getClass().getName(), Configuration.browser);
+		Selenide.closeWebDriver();
+	}
 
-    @AfterMethod
-    public void addAttachmentOnFailure(ITestResult testResult){
-        if (!testResult.isSuccess()) {
-            if (WebDriverRunner.getWebDriver() instanceof TakesScreenshot) {
-                File screenshot = screenshot(OutputType.FILE);
-                ReportPortal.emitLog("Test failed - Screenshot attached " + testResult.getMethod().getMethodName(), "ERROR", new Date(), screenshot);
-            }
-        }
-    }
+	@AfterMethod
+	public void addAttachmentOnFailure(ITestResult testResult) {
+		if (!testResult.isSuccess()) {
+			if (WebDriverRunner.getWebDriver() instanceof TakesScreenshot) {
+				File screenshot = screenshot(OutputType.FILE);
+				ReportPortal.emitLog("Test failed - Screenshot attached " + testResult.getMethod().getMethodName(),
+						"ERROR", new Date(), screenshot);
+			}
+		}
+	}
 
 }
